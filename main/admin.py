@@ -1,13 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
-# from .models import Photo
-#
-#
-# class PhotoAdmin(admin.ModelAdmin):
-#     prepopulated_fields = {'url': ('id',)}
-#
-#
-from .models import Photo
+from main.models import AdvancedUser
 
-admin.site.register(Photo)
+
+
+admin.site.register(AdvancedUser)

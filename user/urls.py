@@ -1,10 +1,6 @@
-from django.urls import path
-from .views import SignUpView, LoginView, LogoutView, UserSearchView, UserShareView
+from django.urls import path, include
+from .views import UserRegistration
 
 urlpatterns = [
-    path('signup/', SignUpView),
-    path('login/', LoginView),
-    path('logout/', LogoutView),
-    path('user', UserSearchView),
-    path('user/<int:id>/share', UserShareView),
+    path('registration', UserRegistration.as_view(), name='registration'),
 ]
