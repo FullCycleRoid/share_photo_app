@@ -1,8 +1,9 @@
-from django.conf.urls import url
-from django.urls import path
-from .views import PhotoView, PhotoDetailView
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import PhotoListCreateViewSet
 
+router = DefaultRouter()
+router.register('photo', PhotoListCreateViewSet)
 urlpatterns = [
-    path('photo', PhotoView.as_view(), name='photos'),
-    path(r'photo/<uuid:id>', PhotoDetailView.as_view(), name='photo_detail'),
+    path('', include(router.urls))
 ]

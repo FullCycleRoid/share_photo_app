@@ -1,16 +1,14 @@
 from rest_framework import serializers
-
+import uuid
 from .models import Photo, AdvancedUser
 
 
 class PhotoSerializer(serializers.ModelSerializer):
 
-    url = serializers.HyperlinkedIdentityField(view_name='photo_detail', read_only=True, lookup_field='id')
+    id = serializers.UUIDField(initial=uuid.uuid4)
+    url = serializers.HyperlinkedIdentityField(view_name='photo-detail', lookup_field='id', read_only=True)
 
     class Meta:
         model = Photo
-        fields = (
-            'id', 'name', 'url',
-            'photo', 'owner_id', 'users'
-        )
+        fields = ('id', 'name', 'photo', 'url', 'owner', 'users')
 

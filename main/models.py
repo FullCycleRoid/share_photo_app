@@ -4,7 +4,6 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.core.validators import RegexValidator
 from django.db import models
-from phone_field import PhoneField
 
 
 class AdvancedUserManager(BaseUserManager):
@@ -54,9 +53,9 @@ class AdvancedUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Photo(models.Model):
-    id           = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4)
+    id           = models.UUIDField(primary_key=True, default=uuid.uuid4(), unique=True)
     name         = models.CharField(max_length=100, default='Untitled')
     url          = models.URLField(blank=True, null=True)
-    photo        = models.ImageField(upload_to='images/%Y/%m/%d')
-    owner_id     = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='my_photo')
+    photo        = models.ImageField(upload_to='images/%Y/%m/%d', default='deathstar.jpg')
+    owner        = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='my_photo')
     users        = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)

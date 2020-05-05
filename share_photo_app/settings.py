@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
 INSTALLED_APPS = [
 
     'django.contrib.admin',
@@ -42,16 +43,15 @@ INSTALLED_APPS = [
     'main',
     'rest_framework',
     'rest_auth',
+    'rest_framework.authtoken',
     'djoser',
     'allauth',
     'django.contrib.sites',
     'allauth.account',
     'rest_auth.registration',
-    'rest_framework.authtoken',
     'django_extensions'
 
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -84,9 +84,7 @@ WSGI_APPLICATION = 'share_photo_app.wsgi.application'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
